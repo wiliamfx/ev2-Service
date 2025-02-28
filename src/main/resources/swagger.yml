@@ -1,0 +1,252 @@
+openapi: 3.0.0
+info:
+  title: Helados Store API
+  version: 1.0.0
+servers:
+  - url: http://localhost:9500
+paths:
+  /carritos:
+    get:
+      summary: Obtener todos los carritos
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Crear un nuevo carrito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                carritoId:
+                  type: object
+                  properties:
+                    carritoId:
+                      type: integer
+                    clienteId:
+                      type: integer
+                estado:
+                  type: string
+              example:
+                carritoId:
+                  carritoId: 1
+                  clienteId: 1
+                estado: Activo
+      responses:
+        '201':
+          description: Carrito creado
+
+  /carritos/{carritoId}/{clienteId}:
+    get:
+      summary: Obtener un carrito por ID
+      parameters:
+        - name: carritoId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: clienteId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Actualizar un carrito
+      parameters:
+        - name: carritoId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: clienteId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                estado:
+                  type: string
+              example:
+                estado: Inactivo
+      responses:
+        '200':
+          description: Carrito actualizado
+    delete:
+      summary: Eliminar un carrito
+      parameters:
+        - name: carritoId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: clienteId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+
+  /clientes:
+    post:
+      summary: Crear un nuevo cliente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                email:
+                  type: string
+                telefono:
+                  type: string
+              example:
+                nombre: Juan Perez
+                email: juan.perez@example.com
+                telefono: 123456789
+      responses:
+        '201':
+          description: Cliente creado
+
+  /clientes/{id}:
+    get:
+      summary: Obtener un cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Actualizar un cliente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                email:
+                  type: string
+                telefono:
+                  type: string
+              example:
+                nombre: Juan Perez
+                email: juan.perez@example.com
+                telefono: 987654321
+      responses:
+        '200':
+          description: Cliente actualizado
+    delete:
+      summary: Eliminar un cliente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+
+  /helados:
+    post:
+      summary: Crear un nuevo helado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                tipo:
+                  type: string
+                precio:
+                  type: number
+                descripcion:
+                  type: string
+              example:
+                nombre: Helado de Vainilla
+                tipo: Crema
+                precio: 5.0
+                descripcion: Helado cremoso de vainilla
+      responses:
+        '201':
+          description: Helado creado
+
+  /helados/{id}:
+    get:
+      summary: Obtener un helado por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Actualizar un helado
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                tipo:
+                  type: string
+                precio:
+                  type: number
+                descripcion:
+                  type: string
+              example:
+                nombre: Helado de Chocolate
+                tipo: Crema
+                precio: 6.0
+                descripcion: Helado cremoso de chocolate
+      responses:
+        '200':
+          description: Helado actualizado
+    delete:
+      summary: Eliminar un helado
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
